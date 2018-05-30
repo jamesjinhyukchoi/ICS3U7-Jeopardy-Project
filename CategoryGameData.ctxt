@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=fileName
+comment0.target=CategoryGameData(java.lang.String)
+comment0.text=\r\n\ Creates\ an\ object\ of\ class\ CategoryGameData\ containing\ the\ category\ game\ data\ from\ the\ specified\ file.\r\n\ \r\n\ @param\ fileName\ the\ name\ of\ the\ file\ that\ is\ being\ read\ from;\ must\ be\ a\ category\ file\r\n
+comment1.params=
+comment1.target=java.lang.String[]\ getData()
+comment1.text=\r\n\ Returns\ the\ categories\ of\ this\ file.\r\n\ \r\n\ @return\ the\ categories\ of\ this\ file.\r\n
+numComments=2
