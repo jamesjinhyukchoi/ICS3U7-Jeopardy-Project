@@ -1,33 +1,77 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 
 /**
- * Write a description of class QuestionGameData here.
+ * Reads a data file and processes the question and answer game data suitable for class JeopardyGame.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Evan Chen & James Choi
+ * @version 2018-05-31
  */
 public class QuestionGameData
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    // static constants
+    private static final int NUMBER_OF_SETS = 5;
+    private static final int NUMBER_OF_ANSWERS= 5;
+
+    // instance fields
+    String[][] set;
 
     /**
-     * Constructor for objects of class QuestionGameData
-     */
-    public QuestionGameData()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
+     * Loads the question game data from the specified data file.
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param fileName the specified file; must be in the question format,
+     * example can be found @ http://touque.ca/EC/programming/Java/assignments/ca/Jeopardy/dataFiles/basics.data
      */
-    public int sampleMethod(int y)
+    public QuestionGameData(String fileName)
     {
-        // put your code here
-        return x + y;
-    }
+        // Initialize the arrays.
+        set = new String[NUMBER_OF_SETS][NUMBER_OF_ANSWERS + 1]; // Let 0 will be the question for the anwers subarray.
+
+        // Attempt to establish a connection to the data file.
+        if (fileName == null)
+        {
+            for (int setNumber = 0; setNumber < NUMBER_OF_SETS; setNumber++)
+            {
+                for (int questionAndAnswerNumber = 0; questionAndAnswerNumber < NUMBER_OF_ANSWERS + 1; questionAndAnswerNumber++)
+                {
+                    set[setNumber][questionAndAnswerNumber] = "";
+                } // end of for (int questionAndAnswerNumber = 0; questionAndAnswerNumber < NUMBER_OF_ANSWERS + 1; questionAndAnswerNumber++)
+            } // end of for (int setNumber = 0; setNumber < NUMBER_OF_SETS; setNumber++)
+        }
+        else
+        {
+            try
+            {
+                // Attempt to establish a connection to the console.
+                BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
+
+                for (int setNumber = 0; setNumber < NUMBER_OF_SETS; setNumber++)
+                {
+                    for (int questionAndAnswerNumber = 0; questionAndAnswerNumber < NUMBER_OF_ANSWERS + 1; questionAndAnswerNumber++)
+                    {
+                        try
+                        {
+                            set[setNumber][questionAndAnswerNumber] = fileReader.readLine();
+                        }
+                        catch (IOException exception)
+                        {
+                            set[setNumber][questionAndAnswerNumber] = "";
+                        } // end of catch (IOException exception)
+                    } // end of for (int questionAndAnswerNumber = 0; questionAndAnswerNumber < NUMBER_OF_ANSWERS + 1; questionAndAnswerNumber++)
+                } // end of if (fileName == null)
+            }
+            catch (FileNotFoundException exception)
+            {
+                for (int setNumber = 0; setNumber < NUMBER_OF_SETS; setNumber++)
+                {
+                    for (int questionAndAnswerNumber = 0; questionAndAnswerNumber < NUMBER_OF_ANSWERS + 1; questionAndAnswerNumber++)
+                    {
+                        set[setNumber][questionAndAnswerNumber] = "";
+                    } // end of for (int questionAndAnswerNumber = 0; questionAndAnswerNumber < NUMBER_OF_ANSWERS + 1; questionAndAnswerNumber++)
+                } // end of for (int setNumber = 0; setNumber < NUMBER_OF_SETS; setNumber++)
+            } // end of catch (FileNotFoundException exception)
+        }
+    } // end of constructor QuestionGameData
 }
