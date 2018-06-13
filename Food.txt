@@ -1,0 +1,31 @@
+Country that produces the most potatoes
+What is China?*
+What is USA?
+What is Ireland?
+What is Russia?
+What is Vietnam?
+Amount of beers an average US citizen drinks in an year
+What is 24 gallons?*
+What is 24 quarts?
+What is 24 pints?
+What is 24 litres?
+What is 500,00 millilitres?
+Country where more than 75% of Maple Syrup is proudced
+What is US?
+What is Ireland?
+What is MapleCounty?
+What is Belise?
+What is Canada?*
+Water concentration percentage in watermelons
+What is 9.9%?
+What is 20.9%?
+What is 99.3%?*
+What is 79.3%?
+What is 83.9%?
+Amount of apple cores you need to eat to die
+What is 5?
+What is 10?
+What is 15?
+What is 20?*
+What is 25?
+
