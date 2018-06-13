@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.params=fileName
-comment0.target=QuestionGameData(java.lang.String)
-comment0.text=\r\n\ Loads\ the\ question\ game\ data\ from\ the\ specified\ data\ file.\r\n\ \r\n\ @param\ fileName\ the\ specified\ file;\ must\ be\ in\ the\ question\ format,\r\n\ example\ can\ be\ found\ @\ http\://touque.ca/EC/programming/Java/assignments/ca/Jeopardy/dataFiles/basics.data\r\n
-numComments=1
