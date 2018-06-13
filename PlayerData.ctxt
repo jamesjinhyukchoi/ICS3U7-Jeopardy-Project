@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=PlayerData()
+comment0.text=\r\n\ Creates\ a\ new\ PlayerDatabase.\r\n
+comment1.params=playerNumber\ scoreChange
+comment1.target=void\ changeScore(int,\ int)
+comment1.text=\r\n\ Changes\ the\ score\ of\ the\ specified\ player\ by\ the\ specified\ amount.\r\n\ \r\n\ @param\ scoreChange\ the\ change\ on\ the\ player's\ score\r\n\ @param\ playerNumber\ the\ number\ corresponding\ to\ the\ player\ who's\ score\ is\ being\ changed;\ must\ be\ non-negative\ less\ than\ PLAYER_COUNT\r\n
+comment2.params=
+comment2.target=void\ nextTurn()
+comment2.text=\r\n\ Sets\ the\ turn\ player\ to\ be\ the\ next\ player.\r\n
+comment3.params=
+comment3.target=void\ reset()
+comment3.text=\r\n\ Resets\ the\ data\ to\ the\ starting\ state.\r\n
+comment4.params=playerNumber
+comment4.target=int\ getScore(int)
+comment4.text=\r\n\ Returns\ the\ score\ of\ the\ player\ specified.\r\n\ \r\n\ @param\ playerNumber\ the\ number\ corresponding\ to\ the\ player\ whose\ score\ is\ required;\ must\ be\ non-negative\ less\ than\ PLAYER_COUNT\r\n\ @return\ the\ score\ of\ the\ player\ specified\r\n
+comment5.params=playerNumber
+comment5.target=java.lang.String\ getName(int)
+comment5.text=\r\n\ Returns\ the\ name\ of\ the\ current\ turn\ player.\r\n\ \r\n\ @param\ the\ number\ corresponding\ to\ the\ current\ turn\ player;\ must\ be\ non-negative\ less\ than\ PLAYER_COUNT\r\n\ @return\ the\ name\ of\ the\ current\ turn\ player\r\n
+comment6.params=
+comment6.target=int\ getTurnPlayer()
+comment6.text=\r\n\ Returns\ the\ number\ corresponding\ to\ the\ current\ turn\ player.\r\n\ \r\n\ @return\ the\ number\ corresponding\ to\ the\ current\ turn\ player\r\n
+comment7.params=
+comment7.target=java.lang.String\ getTurnPlayerName()
+comment7.text=\r\n\ Returns\ the\ name\ of\ the\ current\ turn\ player.\r\n\ \r\n\ @return\ the\ name\ of\ the\ current\ turn\ player\r\n
+numComments=8

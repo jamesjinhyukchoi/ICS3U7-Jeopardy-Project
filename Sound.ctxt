@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Sound()
+comment0.text=\r\n\ Creates\ the\ audioplayer\ responsible\ for\ playing\ the\ audio.\r\n
+comment1.params=
+comment1.target=void\ playTheme()
+comment1.text=\r\n\ Plays\ the\ jeopardy\ theme\ song.\r\n
+comment2.params=
+comment2.target=void\ beep()
+comment2.text=\r\n\ Plays\ a\ beep.\r\n
+comment3.params=
+comment3.target=void\ stopTheme()
+comment3.text=\r\n\ Stops\ the\ jeopardy\ theme\ song.\r\n
+numComments=4
