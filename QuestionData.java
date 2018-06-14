@@ -33,7 +33,7 @@ public class QuestionData
         // Initialize the arrays.
         set = new String[ANSWER_COUNT][QUESTION_COUNT + 1]; // Let zero be the question.
         isAnswerCorrect = new boolean[ANSWER_COUNT][QUESTION_COUNT + 1]; // Let 0 be the question.
-        
+
         // Import the quesiton data.
         importData(fileName);
     } // end of constructor QuestionData
@@ -71,25 +71,18 @@ public class QuestionData
      */
     public boolean isCorrect(int setNumber, int questionNumber)
     {
-        if (setNumber >= 0 && setNumber < CATEGORY_COUNT + 1)
+        if (isAnswerCorrect != null)
         {
-            if (questionNumber >= 0 && questionNumber < QUESTION_COUNT && questionNumber >= 0 && questionNumber < QUESTION_COUNT)
-            {
-                return isAnswerCorrect[setNumber][questionNumber];
-            }
-            else
-            {
-                return false;
-            } // end of if (answerNumber >= 0 && answerNumber < 5)
+            return isAnswerCorrect[setNumber][questionNumber];
         }
         else
         {
             return false;
-        } // end of if (questionNumber >= 0 && questionNumber < 5)
+        } // end of if (isAnswerCorrect[setNumber][questionNumber] != null)
     } // end of method isCorrect(int questionNumber, int answerNumber)
-    
+
     // mutators
-    
+
     /**
      * Imports the question data from the specified file.
      * 

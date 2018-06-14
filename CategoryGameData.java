@@ -74,7 +74,14 @@ public class CategoryGameData
      */
     public String getQuestionData(int categoryNumber, int setNumber, int responseNumber)
     {
-        return gameData[categoryNumber].getData(setNumber, responseNumber);
+        if (gameData[categoryNumber] != null)
+        {
+            return gameData[categoryNumber].getData(setNumber, responseNumber);
+        }
+        else
+        {
+            return "";
+        } // end of if (questionData != null)
     } // end of method getQuesionData(int setNumber, int responseNumber)
     // mutators
 

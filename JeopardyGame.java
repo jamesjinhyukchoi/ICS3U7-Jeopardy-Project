@@ -35,6 +35,7 @@ public class JeopardyGame
     public int currentCategoryNumber;
     private int currentQuestionNumber;
     private JPanel endScreen;
+    private boolean isEndScreen;
     private boolean isShowingQuestion;
     private JPanel mainButtonPanel;
     private JFrame mainFrame;
@@ -79,6 +80,8 @@ public class JeopardyGame
 
         // Create the frame.
         makeFrame();
+
+        isEndScreen = false;
     } // end of constructor JeopardyGame()
 
     // mutators
@@ -187,6 +190,12 @@ public class JeopardyGame
             mainFrame.remove(questionPanel);
         } // end of if (isShowingQuestion)
         mainFrame.remove(scorePanel);
+        if (isEndScreen)
+        {
+            mainFrame.remove(endScreen);
+        } // end of if (isEndScreen)
+        // Reset the questions completed.
+        questionsCompleted = 0;
 
         // Reset the player scores.
         playerData.reset();
@@ -282,11 +291,11 @@ public class JeopardyGame
         // Initialize the end screen panel.
         endScreen = new JPanel();
         endScreen.setLayout(new BorderLayout());
-        
+
         // Add the title.
         JLabel title = new JLabel("GAME OVER!", JLabel.CENTER);
         endScreen.add(title, BorderLayout.PAGE_START);
-        
+
         // Create the score panel.
         JPanel scorePanel = new JPanel();
         scorePanel.setLayout(new GridLayout(PLAYER_COUNT, 1));
@@ -297,9 +306,12 @@ public class JeopardyGame
             JLabel scoreLabel = new JLabel(playerData.getName(playerNumber) + ": " + playerData.getScore(playerNumber), JLabel.CENTER);
             scorePanel.add(scoreLabel);
         } // end of for (int playerNumber = 0; playerNumber < PLAYER_COUNT; playerNumber++)
-        
+
         // Add the score panel to the end screen panel.
         endScreen.add(scorePanel, BorderLayout.CENTER);
+
+        // Declare that the end screen is showing
+        isEndScreen = true;
     } // end of method makeScoreScreen()
 
     // private classes
@@ -386,9 +398,9 @@ public class JeopardyGame
                         // Start the jeopardy theme song
                         sound.playTheme();
 
-                        // Start a 33 second timer in which the player needs to answer the question.
+                        // Start a 33 second timer in which the song will finish.
                         timer.startTimer();
-                        
+
                         // Track the questions completed.
                         questionsCompleted++;
                     } // end of if (source == questionButton[questionNumber][categoryNumber])
@@ -398,7 +410,7 @@ public class JeopardyGame
     } // end of class QuestionButtonListener implements ActionListener
 
     /*
-     * Verifies if the answer selected is correct
+     * Resonds to buttons clicked in the question panel.
      */
     private class AnswerListener implements ActionListener
     {
@@ -419,48 +431,51 @@ public class JeopardyGame
 
                     // Stop the theme.
                     sound.stopTheme();
-                    
+
                     // Remove the previous question button selected.
                     questionButton[currentCategoryNumber][currentQuestionNumber].setVisible(false);
 
                     // Number 0 within the isCorrect array is the question.
-                    if (categoryData.gameData[currentCategoryNumber].isCorrect(currentQuestionNumber, answerNumber + 1))
+                    if (categoryData != null && categoryData.gameData[currentCategoryNumber] != null)
                     {
-                        int turnPlayer = playerData.getTurnPlayer();
+                        if (categoryData.gameData[currentCategoryNumber].isCorrect(currentQuestionNumber, answerNumber + 1))
+                        {
+                            int turnPlayer = playerData.getTurnPlayer();
 
-                        // Add the score to the current turn player.
-                        playerData.changeScore(turnPlayer, (currentQuestionNumber + 1) * 10);
+                            // Add the score to the current turn player.
+                            playerData.changeScore(turnPlayer, (currentQuestionNumber + 1) * 10);
 
-                        // Update the scoreboard.
-                        scoreLabel[turnPlayer + 1].setText(playerData.getName(turnPlayer) + " : " + playerData.getScore(turnPlayer));
+                            // Update the scoreboard.
+                            scoreLabel[turnPlayer + 1].setText(playerData.getName(turnPlayer) + " : " + playerData.getScore(turnPlayer));
 
-                        // Indicate that it is the next player's turn.
-                        playerData.nextTurn();
-                        turnPlayer = playerData.getTurnPlayer();
-                        scoreLabel[0].setText("It is " + playerData.getName(turnPlayer) + "'s turn");
-                    }
-                    else
-                    {
-                        int turnPlayer = playerData.getTurnPlayer();
+                            // Indicate that it is the next player's turn.
+                            playerData.nextTurn();
+                            turnPlayer = playerData.getTurnPlayer();
+                            scoreLabel[0].setText("It is " + playerData.getName(turnPlayer) + "'s turn");
+                        }
+                        else
+                        {
+                            int turnPlayer = playerData.getTurnPlayer();
 
-                        // Subtract the score from the current turn player.
-                        playerData.changeScore(playerData.getTurnPlayer(), (currentQuestionNumber + 1) * -10);
+                            // Subtract the score from the current turn player.
+                            playerData.changeScore(playerData.getTurnPlayer(), (currentQuestionNumber + 1) * -10);
 
-                        // Update the scoreboard.
-                        scoreLabel[turnPlayer + 1].setText(playerData.getName(turnPlayer) + " : " + playerData.getScore(turnPlayer));
+                            // Update the scoreboard.
+                            scoreLabel[turnPlayer + 1].setText(playerData.getName(turnPlayer) + " : " + playerData.getScore(turnPlayer));
 
-                        // Indicate that it is the next player's turn.
-                        playerData.nextTurn();
-                        turnPlayer = playerData.getTurnPlayer();
-                        scoreLabel[0].setText("It is " + playerData.getName(turnPlayer) + "'s turn");
-                    } // end of if (isAnswerCorrect[categoryNumber][answerNumber])
+                            // Indicate that it is the next player's turn.
+                            playerData.nextTurn();
+                            turnPlayer = playerData.getTurnPlayer();
+                            scoreLabel[0].setText("It is " + playerData.getName(turnPlayer) + "'s turn");
+                        } // end of if (isAnswerCorrect[categoryNumber][answerNumber])
+                    } // end of if (categoryData.gameData != null)
                     
                     // When the questions are finished display the end screen.
                     if (questionsCompleted == TOTAL_QUESTIONS)
                     {
                         mainButtonPanel.setVisible(false);
                         scorePanel.setVisible(false);
-                        
+
                         makeEndScreen();
                         mainFrame.add(endScreen, BorderLayout.CENTER);
                     }// end of if (questionsCompleted == TOTAL_QUESTIONS)
